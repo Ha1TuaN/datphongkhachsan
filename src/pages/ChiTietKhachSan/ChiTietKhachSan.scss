@@ -1,0 +1,117 @@
+
+.detail-type{
+    display: flex;
+    align-items: center;
+    div:first-child{
+        background-color: #ecf8ff;
+        color: #0868c9;
+        border-radius: 10px;
+        padding: 0 10px;
+        font-weight: 600;
+    }
+    div:last-child{
+        margin-left: 10px;
+    }
+}
+.img-desc {
+    width: 80%;
+    height: 300pt; /* Chiều cao cố định của khung */
+    position: relative; /* Thiết lập vị trí tương đối cho khung */
+    overflow: hidden; /* Ẩn phần nào của ảnh vượt ra khỏi khung */
+    margin-top: 5px;
+    border-radius: 10px;
+    img {
+      width: 100%;
+      position: absolute; /* Thiết lập vị trí tuyệt đối cho ảnh */
+      top: 50%; /* Đưa ảnh lên trên 50% của khung */
+      left: 50%; /* Đưa ảnh sang trái 50% của khung */
+      transform: translate(-50%, -50%); /* Dịch chuyển ảnh ngược lại 50% chiều rộng và chiều cao của nó */
+      max-width: none; /* Cho phép ảnh vượt ra khỏi khung */
+      max-height: none; /* Cho phép ảnh vượt ra khỏi khung */
+      border-radius: 10px;
+    }
+  }
+
+.img-items{
+    flex-wrap: wrap;
+    height: 300pt;
+    margin-left: 10px;
+    
+    img{
+        height: 80pt;
+        margin: 5px 5px 0 0; 
+        width: 100pt;
+        flex: 2;
+        border-radius: 10px;
+    }
+  }
+.detail-util{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: self-start;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    max-height: 250px;
+    h5{
+        margin: 10px;
+        font-weight: bold;
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: start;
+        li{
+            color: #21a2f5;
+            list-style: none;
+        }
+    }
+}
+.desc-hotel{
+    margin-left: 10px;
+    flex: 3;
+    text-align: justify;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    max-height: 250px;
+    .desc-title{
+        margin: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h5{
+            font-size: 16px;
+            font-weight: bold;
+        }
+        h6{
+            font-size: 12px;
+            color: #21a2f5;
+            span{
+                font-size: 10px;
+            }
+            &:hover{
+                text-decoration: dashed;
+                cursor: pointer;
+                font-weight: bold;
+            }
+        }
+    }
+    .desc{
+        margin: 5px 10px;
+        overflow: hidden;
+        height: 75%;
+        span{
+            max-width: 600px;
+        }
+    }
+}
+
+
+  
+  
+
+  

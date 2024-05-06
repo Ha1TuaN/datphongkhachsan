@@ -1,14 +1,19 @@
 import '../KhachSan.scss'
 import { useState, useEffect } from 'react';
 import { requestGet2 } from '../../../api/api';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../lib/redux/store';
 import { Link } from 'react-router-dom';
 import { renderStars } from '../../../value/value';
-import { StarFilled } from '@ant-design/icons';
+import { EnvironmentFilled, StarFilled } from '@ant-design/icons';
+import Slider from '../../../componets/Slider/Slider';
+import { setSearchVal } from '../../../features/SearchHotel/redux/slice';
 function KhachSanItem() {
     const [hotels, setHotels] = useState<any[]>([]);
-    const address = useSelector((state: RootState) => state.searchAddress.query)
+    const address = useSelector((state: RootState) => state.checkInCheckOut.searchAddress)
+    // const date = useSelector((state: RootState) => state.checkInCheckOut.dateInDateOut)
+    // console.log(address, date)
+    const dispath = useDispatch()
     useEffect(() => {
         const fetchData = async () => {
             const respone = await requestGet2("GetHotel", {
@@ -17,49 +22,56 @@ function KhachSanItem() {
             setHotels(respone);
         };
         fetchData();
-    }, []);
-
+    }, [address]);
     hotels.forEach((hotel) => {
         if (typeof hotel.imageUrl === 'string') {
             hotel.imageUrl = hotel.imageUrl.split(';').filter((url: string) => url.trim() !== '');
         }
-        if (typeof hotel.description === 'string') {
-            hotel.description = hotel.description.split(',');
+        if (typeof hotel.utilities === 'string') {
+            hotel.utilities = hotel.utilities.split(',');
         }
     });
-    
-    console.log(hotels)
+
+    const handleClick = (id:number) => {
+        const hotelName = (hotels.filter((hotel) => hotel.id === id))[0].name
+        dispath(setSearchVal(hotelName))
+    }
     return ( 
         <>
             <div className='w-100 flex-column'>
                 {hotels.map((hotel) => (
-                    <div key={hotel.id} className="list-item d-flex bg-light">
-                      <div className="item-image">
-                          <img src={hotel.imageUrl[0]} alt={hotel.name} />
-                      </div>
-                      <div className="item-content">
-                          <div className="item-title d-flex justify-content-start">
-                              <Link to={`/phong/${hotel.id}`}><h1>{hotel.name}</h1></Link>
-                              <div className="item-type mt-1 ml-2">
-                                  <div className="five-star">
-                                      {renderStars(hotel.type, <StarFilled className='text-warning'/>)}
-                                  </div>
-                              </div>
-                          </div>
-                          <div className="item-address">
-                              <span>Địa chỉ: {hotel.address}</span>
-                          </div>
-                          <div className="item-desc">
-                              <ul>
-                                  {hotel.description.map((desc:string, key:any)=>
-                                      <div className='item-list'>
-                                          <li key={key}>{desc.trim()}</li>
-                                      </div>
-                                  )}
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
+                    <div key={hotel.id} className="list-item d-flex">
+                        <div className="item-image">
+                            <Slider images={hotel.imageUrl} name={hotel.name}/>
+                        </div>
+                        <Link className='link-to-room' to={`/phong/${hotel.id}`} onClick={() => handleClick(hotel.id)}>
+                        <div className="item-content d-flex flex-column align-items-start" >
+                            <div className="item-title d-flex justify-content-start">
+                                <h1>{hotel.name}</h1>
+                            </div>
+                            <div className="hotel-type">
+                                <div className="">
+                                    Khách sạn
+                                </div>
+                                <div className="">
+                                    {renderStars(hotel.type, <StarFilled className='text-warning'/>)}
+                                </div>
+                            </div>
+                            <div className="item-address">
+                                <span><EnvironmentFilled/> {hotel.address}</span>
+                            </div>
+                            <div className="item-utility">
+                                <ul className=''>
+                                    {hotel.utilities.map((util:string, key:any)=>
+                                        <div className='item-list'>
+                                            <li key={key}>{util.trim()}</li>
+                                        </div>
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
+                        </Link>
+                </div>
                 ))}
             </div>
         </>

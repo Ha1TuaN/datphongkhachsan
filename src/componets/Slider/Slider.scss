@@ -1,0 +1,34 @@
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px; /* Điều chỉnh kích thước của slider tùy thích */
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .slider img {
+    max-height: 200px;
+    max-width: 100%
+  }
+  
+  .slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: #b2d2ff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .slider button:first-child {
+    left: 10px;
+  }
+  
+  .slider button:last-child {
+    right: 10px;
+  }
+  

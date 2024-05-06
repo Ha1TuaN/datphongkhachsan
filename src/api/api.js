@@ -37,4 +37,19 @@ export const requestGet2 = async (api, param) => {
         return null
     }
 }
-
+export const requestPOST = async (URL, data) => {
+    try {
+      const res = await axios({
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        url: `${baseAPI}/${URL}`,
+        data,
+      });
+  
+      return res.data;
+    } catch (error) {
+      return null;
+    }
+  };

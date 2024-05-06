@@ -15,15 +15,9 @@ function Header() {
     }
     return (
         <>
-            <div className='header d-flex align-items-center justify-content-between'>
+            <div className='header'>
                 <div>
-                    <img src={logo} alt="abc" className='header-logo' />
-                </div>
-                <div>
-                <Search placeholder="Bạn muốn đi đâu?" value={search} onChange={e => setSearch(e.target.value)} onSearch={handleSearch} enterButton className='header-search' />
-                </div>
-                <div >
-                    <BellFilled className='header-notify'/>
+                    <a href='/'><img src={logo} alt="abc" className='header-logo' /></a>
                 </div>
             </div>
         </>

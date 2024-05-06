@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a{
+  text-decoration: none;
+  color: #000;
+}
+
+.search-hotel {
+  transition: transform 0.3s ease; /* Define a transition for smooth animation */
+}
+
+.search-hotel.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999; /* Ensure it's above other content */
+  animation: slideDown 0.5s ease; /* Slide down animation */
+}
+
+@keyframes slideDown {
+  0% {
+      transform: translateY(-100%);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}

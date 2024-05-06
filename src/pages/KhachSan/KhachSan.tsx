@@ -1,37 +1,33 @@
 import './KhachSan.scss'
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import Header from "../../componets/Layouts/Header/Header";
-import KhachSanNav from './components/KhachSanNav';
+//import KhachSanNav from './components/KhachSanNav';
 import KhachSanItem from './components/KhachSanItem';
-import DateToDate from '../../componets/DateToDate/DateToDate';
+import SearchHotel from '../../features/SearchHotel/SearchHotel';
+import { useScrollContext } from '../../lib/context/context';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setSearchVal } from '../../features/SearchHotel/redux/slice';
 
 function KhachSan() {
-    const [isFixed, setIsFixed] = useState(false);
+    const {isFixed} = useScrollContext()
+    const dispatch = useDispatch();
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 100) { 
-                setIsFixed(true); 
-            } else {
-                setIsFixed(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+        dispatch(setSearchVal(""));
     }, []);
+
     return (
         <>
             <Header/>
-            {isFixed && <DateToDate style={{ position: 'fixed', top: '0', left: '0', boxShadow:'0px 2px 5px rgba(0, 0, 0, 0.5)', }} />}
-            <div className='bg-light pt-5 mt-5' style={{height:'1000vh'}}>
+            <div className={`search-hotel ${isFixed ? 'fixed' : ''}`}>
+                <SearchHotel />
+            </div>
+            <div className='bg-light pt-5' style={{height:'1000vh'}}>
                 <div className='d-flex justify-content-start'>
-                    <div className=''>
+                    {/* <div className=''>
                         <KhachSanNav/>
-                    </div>
-                    <div className='w-100'>
+                    </div> */}
+                    <div className='flex-grow-1'>
                         <KhachSanItem/>
                     </div>
                 </div>

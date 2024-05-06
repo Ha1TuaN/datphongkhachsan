@@ -19,3 +19,11 @@ export const renderStars = (type: string, icon: ReactNode) => {
     }
     return stars; // Return an array of ReactNode
 };
+
+export const formatCurrency = (amount:number) => {
+    let formattedAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    formattedAmount += " VNĐ";
+    
+    return formattedAmount;
+}

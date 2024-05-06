@@ -1,24 +1,45 @@
+
 .list-item{
-    width: 98%;
+    width: 96%;
     margin-left: 10px; 
     height: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    &:hover{
+        box-shadow: 0 0 10px #1d7aff;
+        cursor: pointer;
+        opacity: 0.9;
+    }
 }
 .list-item:not(:first-child) {
     margin-top: 15px;
 }
 
+.link-to-room{
+    text-decoration: none;
+    color: #292626;
+}
 .item-image{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 200px; 
+    width: 200px;
+    overflow: hidden; 
+    border-radius: 10px;
     img{
-        width: 300px;
+        min-width: 200px;
+        min-height: 200px;
     }
 }
 
 .item-content{
     flex: 1;
+    margin: 15px 0 0 10px;
     display: flex;
     flex-direction: column;
     align-items: start;
-    margin-left: 10px;
     .item-type{
         margin-left: 10px;
     }
@@ -28,14 +49,35 @@
     h1{
         font-weight: 500;
         font-size: 24px;
-        &:hover{
-            text-decoration: underline;
-            opacity: 0.5;
-            cursor: pointer;
-        }
     }
 }
-.item-desc{
+.hotel-type{
+    display: flex;
+    align-items: center;
+
+    div:first-child{
+        background-color: #ecf8ff;
+        color: #0868c9;
+        border-radius: 10px;
+        padding: 0 10px;
+        font-weight: 600;
+    }
+    div:last-child{
+        margin-left: 10px;
+    }
+}
+.item-address{
+    margin-top: 5px;
+    width: 90%;
+    span{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        max-width: 100%;
+    }
+}
+.item-utility{
     display: flex;
     justify-content: flex-start;
     ul{
@@ -44,15 +86,23 @@
         justify-content: flex-start;
     }
     .item-list{
-        margin-left: 20px;
-        background-color: beige;
-        padding: 2px 5px;
+        background-color: rgb(131, 131, 8);
+        padding: 2px 10px;
         border-radius: 50px;
-        margin-left: 20px;
         li {
             list-style: none;
-            color: #1d7aff;
+            color: #fff;
+
+            &:hover{
+                cursor: pointer;
+                opacity: 0.7;
+            }
         }
     }
+    .item-list:not(:first-child){
+        margin-left: 20px;
+    }
 }
+
+
 
